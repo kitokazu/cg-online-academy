@@ -1,0 +1,9 @@
+.scene{
+    position:relative;
+    left: 0;
+    top: 0;
+}
+
+.canvas{
+    background: #ded5d5;
+}
