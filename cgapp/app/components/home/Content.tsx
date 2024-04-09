@@ -1,5 +1,5 @@
 import React from 'react'
-import Three from '../Three'
+import Three from './models/Three'
 import Marquee from 'react-fast-marquee'
 import Image from 'next/image'
 import cover from "../../../public/cover.png"
@@ -8,7 +8,8 @@ import pfp from "../../../public/pfp.png"
 const Content = () => {
   return (
     <div>
-        <section className = " mx-auto text-header">
+
+        <section className = "w-11/12 mx-auto  text-header">
         <div className = "grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24">
           <section>
             <h1 className = "text-6xl lg:text-7xl font-bold tracking-tight">
@@ -62,7 +63,7 @@ const Content = () => {
 
 
 
-  <section className = "mt-7">
+  <section className = "my-7">
     <span className="flex items-center py-3 md:mx-72 text-white">
           <span className="h-px flex-1 w-0.5 bg-white"></span>
           <span className="shrink-0 px-6 text-2xl">His Works</span>
@@ -70,7 +71,7 @@ const Content = () => {
         </span>
     <div className = "flex justify-center p-5">
       <section className = "w-7/12">
-        <Marquee className = "w-">
+        <Marquee>
             <Three />
             <Three />
             <Three />
