@@ -1,9 +1,8 @@
 import React from 'react'
-import Three from './models/Three'
-import Marquee from 'react-fast-marquee'
 import Image from 'next/image'
 import cover from "../../../public/cover.png"
 import pfp from "../../../public/pfp.png"
+import Works from "./Works"
 
 const Content = () => {
   return (
@@ -63,24 +62,7 @@ const Content = () => {
 
 
 
-  <section className = "my-7">
-    <span className="flex items-center py-3 md:mx-72 text-white">
-          <span className="h-px flex-1 w-0.5 bg-white"></span>
-          <span className="shrink-0 px-6 text-2xl">His Works</span>
-          <span className="h-px flex-1 bg-white"></span>
-        </span>
-    <div className = "flex justify-center p-5">
-      <section className = "w-7/12">
-        <Marquee>
-            <Three />
-            <Three />
-            <Three />
-            <Three />
-            <Three />
-        </Marquee>
-    </section>
-    </div>
-  </section>
+    <Works />
 
   <section className = "border-t-2 border-zinc-800 bg-gradient-to-b from-neutral-900 to-gray-700 flex justify-center py-14">
       <div className="w-full md:w-4/12 px-4 text-center ">
