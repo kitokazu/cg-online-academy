@@ -121,7 +121,7 @@ const Information = () => {
                     initial="hidden"
                     animate={mainControls}
                     transition={{
-                        duration:0.7, delay: 0.8
+                        duration:0.7, delay: 0.6
                     }} >
         <h1 className = "font-semibold text-2xl lg:text-3xl 2xl:text-4xl border-b-2 border-neutral-300 text-header">Lorem ipsum dolor sit amet.</h1>
         <ul className = "text-subtext 2xl:text-lg">
@@ -136,7 +136,7 @@ const Information = () => {
                     initial="hidden"
                     animate={mainControls}
                     transition={{
-                        duration:0.7, delay: 1.1
+                        duration:0.7, delay: 0.9
                     }} className = "mt-7">
         <h1 className = "font-semibold text-2xl lg:text-3xl 2xl:text-4xl border-b-2 border-neutral-300 text-header">Lorem ipsum dolor sit amet.</h1>
         <ul className = "text-subtext 2xl:text-lg">
@@ -151,7 +151,7 @@ const Information = () => {
                     initial="hidden"
                     animate={mainControls}
                     transition={{
-                        duration:0.7, delay: 1.4
+                        duration:0.7, delay: 1.2
                     }} className = "mt-7">
         <h1 className = "font-semibold text-2xl lg:text-3xl 2xl:text-4xl border-b-2 border-neutral-300 text-header">Lorem ipsum dolor sit amet.</h1>
         <ul className = "text-subtext 2xl:text-lg">
