@@ -20,7 +20,7 @@ const Information = () => {
     }, [isInView, mainControls])
   return (
     <section ref = {ref} className = "bg-gray-700  px-20 ">
-    <div className="grid place-items-center grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-28 ">
+    <div className="grid place-items-center grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-20 xl:gap-4">
 
     <section>
         <div className="w-8/12 md:w-full px-4 mx-auto">
@@ -122,9 +122,9 @@ const Information = () => {
                     animate={mainControls}
                     transition={{
                         duration:0.7, delay: 0.8
-                    }}>
-        <h1 className = "font-semibold text-2xl lg:text-3xl border-b-2 border-neutral-300 text-header">Lorem ipsum dolor sit amet.</h1>
-        <ul className = "text-subtext">
+                    }} >
+        <h1 className = "font-semibold text-2xl lg:text-3xl 2xl:text-4xl border-b-2 border-neutral-300 text-header">Lorem ipsum dolor sit amet.</h1>
+        <ul className = "text-subtext 2xl:text-lg">
           <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, magni.</li>
           <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas!</li>
         </ul>
@@ -138,8 +138,8 @@ const Information = () => {
                     transition={{
                         duration:0.7, delay: 1.1
                     }} className = "mt-7">
-        <h1 className = "font-semibold text-2xl lg:text-3xl border-b-2 border-neutral-300 text-header">Lorem ipsum dolor sit amet.</h1>
-        <ul className = "text-subtext">
+        <h1 className = "font-semibold text-2xl lg:text-3xl 2xl:text-4xl border-b-2 border-neutral-300 text-header">Lorem ipsum dolor sit amet.</h1>
+        <ul className = "text-subtext 2xl:text-lg">
           <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, magni.</li>
           <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas!</li>
         </ul>
@@ -153,12 +153,14 @@ const Information = () => {
                     transition={{
                         duration:0.7, delay: 1.4
                     }} className = "mt-7">
-        <h1 className = "font-semibold text-2xl lg:text-3xl border-b-2 border-neutral-300 text-header">Lorem ipsum dolor sit amet.</h1>
-        <ul className = "text-subtext">
+        <h1 className = "font-semibold text-2xl lg:text-3xl 2xl:text-4xl border-b-2 border-neutral-300 text-header">Lorem ipsum dolor sit amet.</h1>
+        <ul className = "text-subtext 2xl:text-lg">
           <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, magni.</li>
           <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas!</li>
         </ul>
         </motion.div>
+
+
       </section>
 
 
