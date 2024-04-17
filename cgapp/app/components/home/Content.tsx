@@ -2,7 +2,9 @@ import React from 'react'
 import Image from 'next/image'
 import cover from "../../../public/cover.png"
 import pfp from "../../../public/pfp.png"
+import Information from './Information'
 import Works from "./Works"
+import Link from 'next/link'
 
 const Content = () => {
   return (
@@ -78,40 +80,9 @@ const Content = () => {
         </div>
       </div>
     </section>
-    
+  
 
-
-
-    <section className = "bg-gray-700  px-20 ">
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-28">
-        <div className=" p-5">
-          <section>
-          <h1 className = "font-semibold text-2xl lg:text-3xl border-b-2 border-neutral-300 text-header">Lorem ipsum dolor sit amet.</h1>
-          <ul className = "text-subtext">
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, magni.</li>
-            <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas!</li>
-          </ul>
-          </section>
-          <section className = "mt-7">
-          <h1 className = "font-semibold text-2xl lg:text-3xl border-b-2 border-neutral-300 text-header">Lorem ipsum dolor sit amet.</h1>
-          <ul className = "text-subtext">
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, magni.</li>
-            <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas!</li>
-          </ul>
-          </section>
-          <section className = "mt-7">
-          <h1 className = "font-semibold text-2xl lg:text-3xl border-b-2 border-neutral-300 text-header">Lorem ipsum dolor sit amet.</h1>
-          <ul className = "text-subtext">
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, magni.</li>
-            <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas!</li>
-          </ul>
-          </section>
-        </div>
-          <div className="rounded-lg bg-gray-200">
-              <p>Insert Graphic(s) here</p>
-          </div>
-        </div>
-    </section>
+    <Information />
 
     <section className = "bg-gradient-to-b py-20 from-gray-700  to-neutral-800">
       <div className = "bg-gradient-to-tr from-neutral-900 to-neutral-700 rounded-lg mx-32 grid grid-cols-1 lg:grid-cols-3 items-center shadow-md shadow-zinc-600 ">
@@ -120,10 +91,12 @@ const Content = () => {
             <p className = "text-caption">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis eveniet quia quam reprehenderit voluptas aliquid.</p>
           </section>
           <section className = "flex justify-center">
-            <button className="btn btn-md lg:btn-lg ">Register</button>
+            <button className="btn btn-md lg:btn-lg "><Link href ="./registration">Register</Link></button>
           </section>
         </div>
     </section>
+
+    
     </div>
   )
 }
