@@ -1,8 +1,9 @@
 import Link from "next/link";
 
+//z-index = z-10
 const Navbar = () => {
     return (
-        <div className="navbar fixed left-0 top-0 bg-neutral-700 text-header">
+        <div className="navbar sticky left-0 top-0 bg-neutral-700 text-header z-30">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -10,7 +11,7 @@ const Navbar = () => {
             </div>
             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52">
             <li><Link href="./registration">Register</Link></li>
-            <li><Link href="./">Student Works</Link></li>
+            <li><Link href="./student-works">Student Works</Link></li>
             <li><Link href="./">Free Teaching Materials</Link></li>
             <li><Link href="./">Installations</Link></li>
             </ul>
@@ -23,7 +24,7 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li><Link href="./registration">Register</Link></li>
-            <li><Link href="./">Student Works</Link></li>
+            <li><Link href="./student-works">Student Works</Link></li>
             <li><Link href="./">Free Teaching Materials</Link></li>
             <li><Link href="./">Installations</Link></li>
           </ul>

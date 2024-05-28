@@ -8,7 +8,7 @@ import pfp from "../../../public/pfp.png"
 const Content = () => {
   return (
     <div>
-        <section className = " mx-auto py-20 mt-18 text-header">
+        <section className = " mx-auto text-header">
         <div className = "grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24">
           <section>
             <h1 className = "text-6xl lg:text-7xl font-bold tracking-tight">

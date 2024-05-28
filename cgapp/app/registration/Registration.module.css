@@ -1,0 +1,7 @@
+/* Needed to make a customer class
+"borderEdge" of 2rem, because tailwind had a limited option */
+.borderEdge {
+    border-inline-start-width: 2rem;
+}
+
+
