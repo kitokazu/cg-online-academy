@@ -7,6 +7,8 @@ import image1 from "../../../public/cover.png"
 import image2 from "../../../public/slideshow/image4.png";
 import image3 from "../../../public/slideshow/imager.png";
 
+
+//change props from any to correct props
 const Section = (props: any) => {
   return (
     <section

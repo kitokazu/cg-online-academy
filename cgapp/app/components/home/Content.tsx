@@ -1,14 +1,16 @@
 import React from 'react'
-import Three from '../Three'
-import Marquee from 'react-fast-marquee'
 import Image from 'next/image'
 import cover from "../../../public/cover.png"
 import pfp from "../../../public/pfp.png"
+import Information from './Information'
+import Works from "./Works"
+import Link from 'next/link'
 
 const Content = () => {
   return (
     <div>
-        <section className = " mx-auto text-header">
+
+        <section className = "w-11/12 mx-auto  text-header">
         <div className = "grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24">
           <section>
             <h1 className = "text-6xl lg:text-7xl font-bold tracking-tight">
@@ -62,24 +64,7 @@ const Content = () => {
 
 
 
-  <section className = "mt-7">
-    <span className="flex items-center py-3 md:mx-72 text-white">
-          <span className="h-px flex-1 w-0.5 bg-white"></span>
-          <span className="shrink-0 px-6 text-2xl">His Works</span>
-          <span className="h-px flex-1 bg-white"></span>
-        </span>
-    <div className = "flex justify-center p-5">
-      <section className = "w-7/12">
-        <Marquee className = "w-">
-            <Three />
-            <Three />
-            <Three />
-            <Three />
-            <Three />
-        </Marquee>
-    </section>
-    </div>
-  </section>
+    <Works />
 
   <section className = "border-t-2 border-zinc-800 bg-gradient-to-b from-neutral-900 to-gray-700 flex justify-center py-14">
       <div className="w-full md:w-4/12 px-4 text-center ">
@@ -95,40 +80,9 @@ const Content = () => {
         </div>
       </div>
     </section>
-    
+  
 
-
-
-    <section className = "bg-gray-700  px-20 ">
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-28">
-        <div className=" p-5">
-          <section>
-          <h1 className = "font-semibold text-2xl lg:text-3xl border-b-2 border-neutral-300 text-header">Lorem ipsum dolor sit amet.</h1>
-          <ul className = "text-subtext">
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, magni.</li>
-            <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas!</li>
-          </ul>
-          </section>
-          <section className = "mt-7">
-          <h1 className = "font-semibold text-2xl lg:text-3xl border-b-2 border-neutral-300 text-header">Lorem ipsum dolor sit amet.</h1>
-          <ul className = "text-subtext">
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, magni.</li>
-            <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas!</li>
-          </ul>
-          </section>
-          <section className = "mt-7">
-          <h1 className = "font-semibold text-2xl lg:text-3xl border-b-2 border-neutral-300 text-header">Lorem ipsum dolor sit amet.</h1>
-          <ul className = "text-subtext">
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, magni.</li>
-            <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas!</li>
-          </ul>
-          </section>
-        </div>
-          <div className="rounded-lg bg-gray-200">
-              <p>Insert Graphic(s) here</p>
-          </div>
-        </div>
-    </section>
+    <Information />
 
     <section className = "bg-gradient-to-b py-20 from-gray-700  to-neutral-800">
       <div className = "bg-gradient-to-tr from-neutral-900 to-neutral-700 rounded-lg mx-32 grid grid-cols-1 lg:grid-cols-3 items-center shadow-md shadow-zinc-600 ">
@@ -137,10 +91,12 @@ const Content = () => {
             <p className = "text-caption">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis eveniet quia quam reprehenderit voluptas aliquid.</p>
           </section>
           <section className = "flex justify-center">
-            <button className="btn btn-md lg:btn-lg ">Register</button>
+            <button className="btn btn-md lg:btn-lg "><Link href ="./registration">Register</Link></button>
           </section>
         </div>
     </section>
+
+    
     </div>
   )
 }

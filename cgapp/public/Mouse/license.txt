@@ -1,0 +1,8 @@
+Model Information:
+* title:	Simple PC Mouse
+* source:	https://sketchfab.com/3d-models/simple-pc-mouse-4a8fcd93c882402cab7d2d6458855ac5
+* author:	SugarSatea (https://sketchfab.com/SugarSatea)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

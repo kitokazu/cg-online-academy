@@ -13,7 +13,7 @@ const Navbar = () => {
             <li><Link href="./registration">Register</Link></li>
             <li><Link href="./student-works">Student Works</Link></li>
             <li><Link href="./">Free Teaching Materials</Link></li>
-            <li><Link href="./">Installations</Link></li>
+            <li><Link href="./installations">Installations</Link></li>
             </ul>
           </div>
           {/*<a className="btn btn-ghost text-xl">daisyUI</a>*/}
@@ -26,7 +26,7 @@ const Navbar = () => {
             <li><Link href="./registration">Register</Link></li>
             <li><Link href="./student-works">Student Works</Link></li>
             <li><Link href="./">Free Teaching Materials</Link></li>
-            <li><Link href="./">Installations</Link></li>
+            <li><Link href="./installations">Installations</Link></li>
           </ul>
         </div>
         <div className="navbar-end">
