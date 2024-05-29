@@ -3,3 +3,7 @@
 
 # Golang Backend Information
 /backend/go.mod
+
+# live refresh
+/backend/.air.toml
+/backend/tmp

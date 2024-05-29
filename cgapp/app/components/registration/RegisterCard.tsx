@@ -1,9 +1,11 @@
 'use client'
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import styles from "../../registration/Registration.module.css";
 import {motion, useInView, useAnimation} from "framer-motion";
+import CheckoutCard from './CheckoutCard';
+
 
 interface RegisterCard {
     borderColor: string;
@@ -19,6 +21,7 @@ const RegisterCard = ({borderColor, picture, courseHeader, price, durationStart,
   const ref = useRef(null);
   const isInView = useInView(ref, {once:true})
   const mainControls = useAnimation();
+  const [checkout, setCheckout] = useState<boolean>(false);
 
   useEffect(() => {
     if (isInView) {
@@ -26,8 +29,17 @@ const RegisterCard = ({borderColor, picture, courseHeader, price, durationStart,
     }
   }, [isInView, mainControls])
 
+  const closeCheckout = (data: boolean) => {
+    setCheckout(data)
+  }
+
   return (
     <div ref= {ref} >
+      <div>
+        {checkout && (
+              <CheckoutCard course = {courseHeader} checkout = {checkout} setCheckout={closeCheckout}/>
+          )}
+      </div>
     <motion.div variants={{
       hidden: {opacity: 0, y:100, x:100},
       visible: {opacity: 1, y:0, x:0}}}
@@ -63,12 +75,11 @@ const RegisterCard = ({borderColor, picture, courseHeader, price, durationStart,
             </ul>
             <div className = "flex justify-end items-end">
               <div className = "p-5">
-                <button className="btn btn-neutral border-cyan-100 btn-xsm sm:btn-sm lg:btn-md text-header">Register</button>
+                <button className="btn btn-neutral border-cyan-100 btn-xsm sm:btn-sm lg:btn-md text-header" onClick = {() => setCheckout(true)}>Register</button>
               </div>
             </div>
             
-          </div>
-          <div>
+
           </div>
         </section>
       </motion.div>
