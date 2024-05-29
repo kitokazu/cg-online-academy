@@ -6,6 +6,7 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/stripe/stripe-go/v78"
+	"github.com/stripe/stripe-go/v78/price"
 	//"github.com/stripe/stripe-go/v78/paymentintent"
 )
 
@@ -15,7 +16,37 @@ func GetPrice() {
 		fmt.Println("couldn't load environment vars")
 		os.Exit(1)
 	}
+
+	// Put this code somewhere else
 	stripe.Key = os.Getenv("STRIPE_SECRET_KEY")
+
+	// ADD METADATA COURES_ID TAG
+	// params := &stripe.PriceParams{}
+	// params.AddMetadata("course_id", "[COURSE_NUMBER]")
+	// res, err := price.Update("[PRICE_ID]", params)
+	// fmt.Println(res)
+
+	priceParams := &stripe.PriceSearchParams{
+		SearchParams: stripe.SearchParams{
+			Query: "active:'true'",
+		},
+	}
+
+	result := price.Search(priceParams)
+
+	for result.Next() {
+		p := result.Price()
+		if p.Metadata["course_id"] == "2" {
+			fmt.Println(p.ID)
+		}
+		// if meta_data[course_id] == frontend input ==> get specific price of that
+	}
+
+	// So, we are going to add metadata for the product, so that the actual name
+	// which will ultimatley change, doesn't matter as the metadata will stya the same
+	// we use the metadata as a unique identifier.
+	// Frontend will pass in an object identifier that corresponds to metadata
+
 	// create customer with no params
 	// c, _ := customer.New(nil)
 	// fmt.Println(c)

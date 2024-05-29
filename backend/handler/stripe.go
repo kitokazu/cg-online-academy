@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/joho/godotenv"
 	"github.com/stripe/stripe-go/v78"
@@ -17,7 +18,7 @@ import (
 type CheckoutSessionRequest struct {
 	Email  string `json:"email"`
 	Name   string `json:"name"`
-	Course string `json: "course"`
+	Course string `json:"course"`
 }
 
 func HandleConfig(w http.ResponseWriter, r *http.Request) {
@@ -39,20 +40,27 @@ func HandleConfig(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateCheckoutSession(w http.ResponseWriter, r *http.Request) {
+	// *Reminder to create webhooks
+	// *Reminder to allow access to multiple langugages (japanese)
 	var req CheckoutSessionRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	// make sure to right strip email addresses
-	// also get course number that corresponds to the price
+
+	// Trimming spaces from email request
+	req.Email = strings.TrimSpace(req.Email)
+
+	// Getting the correct price tag according to user selection
+	//courseKey[req.courseNumber]
+
 	domain := "http://localhost:3000" // frontend
 	params := &stripe.CheckoutSessionParams{
 		UIMode:    stripe.String("embedded"),
 		ReturnURL: stripe.String(domain + "/return?session_id={CHECKOUT_SESSION_ID}"),
 		LineItems: []*stripe.CheckoutSessionLineItemParams{
 			{
-				Price:    stripe.String("price_1PKylXRt7cEVfD2g4FudgGW3"),
+				Price:    stripe.String("price_1PLaEoRt7cEVfD2g0kQr3mCl"), //PRICE_ID FOR TEST
 				Quantity: stripe.Int64(1),
 			},
 		},
@@ -63,6 +71,12 @@ func CreateCheckoutSession(w http.ResponseWriter, r *http.Request) {
 	s, err := session.New(params)
 	if err != nil {
 		log.Printf("session.New: %v", err)
+	}
+
+	if s.ClientSecret == "" {
+		log.Println("ClientSecret is empty. Unable to process the payment.")
+		http.Error(w, "Internal Server Error: Client secret is missing", http.StatusInternalServerError)
+		return
 	}
 
 	writeJSON(w, struct {
