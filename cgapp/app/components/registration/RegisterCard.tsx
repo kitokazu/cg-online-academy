@@ -8,6 +8,7 @@ import CheckoutCard from './CheckoutCard';
 
 
 interface RegisterCard {
+    courseNumber: string;
     borderColor: string;
     picture: StaticImageData;
     courseHeader: string;
@@ -17,7 +18,7 @@ interface RegisterCard {
     courseDescription:string[];
 
 }
-const RegisterCard = ({borderColor, picture, courseHeader, price, durationStart, durationEnd, courseDescription } : RegisterCard) => {
+const RegisterCard = ({courseNumber, borderColor, picture, courseHeader, price, durationStart, durationEnd, courseDescription } : RegisterCard) => {
   const ref = useRef(null);
   const isInView = useInView(ref, {once:true})
   const mainControls = useAnimation();
@@ -37,7 +38,7 @@ const RegisterCard = ({borderColor, picture, courseHeader, price, durationStart,
     <div ref= {ref} >
       <div>
         {checkout && (
-              <CheckoutCard course = {courseHeader} checkout = {checkout} setCheckout={closeCheckout}/>
+              <CheckoutCard courseNumber = {courseNumber} checkout = {checkout} setCheckout={closeCheckout}/>
           )}
       </div>
     <motion.div variants={{

@@ -31,6 +31,7 @@ func loadRoutes() *chi.Mux {
 	router.Route("/orders", loadOrderRoutes)
 	router.Route("/config", loadConfigRoute)
 	router.Route("/create-checkout-session", loadCheckoutRoute)
+	router.Route("/session-status", loadRetrieveRoute)
 	return router
 }
 
@@ -50,4 +51,8 @@ func loadConfigRoute(router chi.Router) {
 
 func loadCheckoutRoute(router chi.Router) {
 	router.Post("/", handler.CreateCheckoutSession)
+}
+
+func loadRetrieveRoute(router chi.Router) {
+	router.Get("/", handler.RetrieveCheckoutSession)
 }

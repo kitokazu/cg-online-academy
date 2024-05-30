@@ -6,7 +6,7 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/stripe/stripe-go/v78"
-	"github.com/stripe/stripe-go/v78/price"
+	//"github.com/stripe/stripe-go/v78/price"
 	//"github.com/stripe/stripe-go/v78/paymentintent"
 )
 
@@ -22,25 +22,9 @@ func GetPrice() {
 
 	// ADD METADATA COURES_ID TAG
 	// params := &stripe.PriceParams{}
-	// params.AddMetadata("course_id", "[COURSE_NUMBER]")
-	// res, err := price.Update("[PRICE_ID]", params)
+	// params.AddMetadata("course_id", "6")
+	// res, err := price.Update("price_1PLxiARt7cEVfD2gdFhTj1GH", params)
 	// fmt.Println(res)
-
-	priceParams := &stripe.PriceSearchParams{
-		SearchParams: stripe.SearchParams{
-			Query: "active:'true'",
-		},
-	}
-
-	result := price.Search(priceParams)
-
-	for result.Next() {
-		p := result.Price()
-		if p.Metadata["course_id"] == "2" {
-			fmt.Println(p.ID)
-		}
-		// if meta_data[course_id] == frontend input ==> get specific price of that
-	}
 
 	// So, we are going to add metadata for the product, so that the actual name
 	// which will ultimatley change, doesn't matter as the metadata will stya the same
