@@ -6,8 +6,9 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/stripe/stripe-go/v78"
+
 	//"github.com/stripe/stripe-go/v78/price"
-	//"github.com/stripe/stripe-go/v78/paymentintent"
+	"github.com/stripe/stripe-go/v78/paymentintent"
 )
 
 func GetPrice() {
@@ -19,6 +20,14 @@ func GetPrice() {
 
 	// Put this code somewhere else
 	stripe.Key = os.Getenv("STRIPE_SECRET_KEY")
+
+	params := &stripe.PaymentIntentListParams{}
+	result := paymentintent.List(params)
+
+	for result.Next() {
+		pi := result.PaymentIntent()
+		fmt.Println(pi.ReceiptEmail)
+	}
 
 	// ADD METADATA COURES_ID TAG
 	// params := &stripe.PriceParams{}

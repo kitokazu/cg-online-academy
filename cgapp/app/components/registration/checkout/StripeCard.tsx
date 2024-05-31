@@ -3,13 +3,15 @@ import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe
 import { loadStripe, Stripe } from '@stripe/stripe-js';
 import { ErrorBoundary } from "react-error-boundary";
 import axios from 'axios';
+import { UserProps } from './CheckoutPage';
 
 interface CheckoutCardProps {
     courseNumber: string
+    userInfo: UserProps
     checkout: boolean
     setCheckout: (val:boolean) => void
 }
-const CheckoutCard = ({courseNumber, checkout, setCheckout} : CheckoutCardProps) => {
+const StripeCard = ({courseNumber, userInfo, checkout, setCheckout} : CheckoutCardProps) => {
     
     const fetchClientSecret = useCallback(async () => {
         const res = await fetch("http://localhost:8000/create-checkout-session", {
@@ -17,24 +19,24 @@ const CheckoutCard = ({courseNumber, checkout, setCheckout} : CheckoutCardProps)
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ name: "Riki Itokazu", email: "itokazuriki@gmail.com", course_number: courseNumber })
+            body: JSON.stringify({ name: userInfo.name, email: userInfo.email, course_number: courseNumber })
         });
         const data = await res.json();
         return data.clientSecret;
-    }, [courseNumber])
+    }, [userInfo.name, userInfo.email, courseNumber])
 
     useEffect(() => {
+        const getPublishableKey = async () =>{
+            try {
+                const response = await axios.get("http://localhost:8000/config");
+                setStripePromise(loadStripe(response.data.publishableKey))
+            } catch (error) {
+                console.log(error)
+            }
+        }
         getPublishableKey();
     }, [])
 
-    const getPublishableKey = async () =>{
-        try {
-            const response = await axios.get("http://localhost:8000/config");
-            setStripePromise(loadStripe(response.data.publishableKey))
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
     const [stripePromise, setStripePromise] = useState<Stripe | PromiseLike<Stripe | null> | null>(null);
     const options = { fetchClientSecret }
@@ -57,4 +59,4 @@ const CheckoutCard = ({courseNumber, checkout, setCheckout} : CheckoutCardProps)
   )
 }
 
-export default CheckoutCard
+export default StripeCard

@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import styles from "../../registration/Registration.module.css";
 import {motion, useInView, useAnimation} from "framer-motion";
-import CheckoutCard from './CheckoutCard';
+import CheckoutPage from './checkout/CheckoutPage';
 
 
 interface RegisterCard {
@@ -30,16 +30,15 @@ const RegisterCard = ({courseNumber, borderColor, picture, courseHeader, price, 
     }
   }, [isInView, mainControls])
 
-  const closeCheckout = (data: boolean) => {
-    setCheckout(data)
-  }
-
   return (
     <div ref= {ref} >
       <div>
         {checkout && (
-              <CheckoutCard courseNumber = {courseNumber} checkout = {checkout} setCheckout={closeCheckout}/>
+              <CheckoutPage courseNumber = {courseNumber} checkout = {checkout} setCheckout={setCheckout} />
           )}
+      </div>
+      <div>
+        
       </div>
     <motion.div variants={{
       hidden: {opacity: 0, y:100, x:100},
