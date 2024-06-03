@@ -6,10 +6,11 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
+	"github.com/kitokazu/cg-online-academy/database"
 	"github.com/kitokazu/cg-online-academy/handler"
 )
 
-func loadRoutes() *chi.Mux {
+func (a *App) loadRoutes() {
 	router := chi.NewRouter()
 	router.Use(middleware.Logger)
 	router.Use(cors.Handler(cors.Options{
@@ -28,31 +29,46 @@ func loadRoutes() *chi.Mux {
 	})
 
 	// subrouters
-	router.Route("/orders", loadOrderRoutes)
 	router.Route("/config", loadConfigRoute)
-	router.Route("/create-checkout-session", loadCheckoutRoute)
+	router.Route("/create-checkout-session", a.loadCheckoutRoute)
 	router.Route("/session-status", loadRetrieveRoute)
-	return router
-}
+	router.Route("/database", a.loadDatabaseRoutes)
+	router.Route("/webhook", a.loadWebhookRouter)
 
-func loadOrderRoutes(router chi.Router) {
-	orderHandle := &handler.Order{}
-
-	router.Get("/", orderHandle.List)
-	router.Get("/{id}", orderHandle.GetById)
-	router.Post("/", orderHandle.Create)
-	router.Put("/{id}", orderHandle.UpdateById)
-	router.Delete("/{id}", orderHandle.RemoveById)
+	a.router = router
 }
 
 func loadConfigRoute(router chi.Router) {
+
 	router.Get("/", handler.HandleConfig)
 }
 
-func loadCheckoutRoute(router chi.Router) {
-	router.Post("/", handler.CreateCheckoutSession)
+func (a *App) loadCheckoutRoute(router chi.Router) {
+	paymentHandler := &handler.Payment{
+		DatabaseConn: &database.Database{
+			Pool: a.db,
+		},
+	}
+
+	router.Post("/", paymentHandler.CreateCheckoutSession)
 }
 
 func loadRetrieveRoute(router chi.Router) {
 	router.Get("/", handler.RetrieveCheckoutSession)
+}
+
+func (a *App) loadDatabaseRoutes(router chi.Router) {
+	databaseConn := &database.Database{
+		Pool: a.db,
+	}
+	router.Post("/check-active-user", databaseConn.CheckActiveUser)
+}
+
+func (a *App) loadWebhookRouter(router chi.Router) {
+	webhookHandler := &handler.Payment{
+		DatabaseConn: &database.Database{
+			Pool: a.db,
+		},
+	}
+	router.Post("/", webhookHandler.HandleWebhook)
 }

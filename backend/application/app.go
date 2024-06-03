@@ -7,16 +7,17 @@ import (
 	"os"
 	"time"
 
-	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/joho/godotenv"
 )
 
 type App struct {
 	router http.Handler
-	db     *pgx.Conn
+	db     *pgxpool.Pool
 }
 
-func (a *App) Initialize() {
+func initializeDatabase() *pgxpool.Pool {
+	// Differnce between pgx and pgxpool
 	err := godotenv.Load()
 	if err != nil {
 		fmt.Println("Error loading .env file")
@@ -27,20 +28,28 @@ func (a *App) Initialize() {
 		fmt.Println("db url empty")
 		os.Exit(1)
 	}
-	conn, err := pgx.Connect(context.Background(), dbURL)
+	config, err := pgxpool.ParseConfig(dbURL)
 	if err != nil {
-		fmt.Println("failed To launch postgresql", err)
+		fmt.Println("Failed to parse DB URL:", err)
 		os.Exit(1)
 	}
-	fmt.Println("database connected")
-	defer conn.Close(context.Background())
-	a.db = conn
+
+	pool, err := pgxpool.NewWithConfig(context.Background(), config)
+	if err != nil {
+		fmt.Println("Failed to create connection pool:", err)
+		os.Exit(1)
+	}
+
+	fmt.Println("Database connected")
+	// defer pool.Close()
+	return pool
 }
 
 func New() *App {
 	app := &App{
-		router: loadRoutes(),
+		db: initializeDatabase(),
 	}
+	app.loadRoutes()
 	return app
 }
 

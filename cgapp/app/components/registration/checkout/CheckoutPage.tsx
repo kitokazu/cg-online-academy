@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import StripeCard from './StripeCard'
 import InputModal from './InputModal'
 import { useState } from 'react'
+import axios from "axios"
 
 interface CheckoutProps {
     courseNumber: string
@@ -20,7 +21,7 @@ const CheckoutPage = ({courseNumber, checkout, setCheckout}: CheckoutProps) => {
         Only accessible if form is completed
     */
     const [isFormComplete, setFormComplete] = useState<boolean>(false)
-
+    const [userExist, setUserExist] = useState<boolean>(false)
 
     const [userInfo, setUserInfo] = useState<UserProps>({name: "", email: ""})
 
@@ -33,14 +34,19 @@ const CheckoutPage = ({courseNumber, checkout, setCheckout}: CheckoutProps) => {
         setUserInfo({name: "", email: ""})
     }, [checkout])
 
+
+
   return (
     <div>
-        {checkout && isFormComplete ? 
+        {checkout && isFormComplete && !userExist ? 
         <StripeCard courseNumber={courseNumber} userInfo={userInfo} 
         checkout = {checkout} setCheckout = {setCheckout} />
-        : <InputModal checkout = {checkout} setCheckout = {setCheckout} 
+        : 
+        userExist ? 
+        null :
+        <InputModal checkout = {checkout} setCheckout = {setCheckout} 
         isFormComplete = {isFormComplete} setFormComplete = {setFormComplete}
-         userInfo = {userInfo} setUserInfo = {setUserInfo}/>}
+         userInfo = {userInfo} setUserInfo = {setUserInfo} courseNumber = {courseNumber}/>}
 
       
     </div>

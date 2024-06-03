@@ -2,20 +2,17 @@ package model
 
 import (
 	"time"
-
-	"github.com/google/uuid"
 )
 
-type Course struct {
-	CustomerID   uuid.UUID  `json:"customer_id"`
-	FirstName    string     `json:"first_name"`
-	LastName     string     `json:"last_name"`
-	Email        string     `json:"email"`
-	Course       string     `json:"course"`
-	RegisteredAt *time.Time `json:"registered_at"`
-	Active       bool       `json:"active"`
+type UserInfo struct {
+	CustomerID   string    `json:"customer_id"`
+	Name         string    `json:"name"`
+	Email        string    `json:"email"`
+	CourseID     string    `json:"course_id"`
+	RegisteredAt time.Time `json:"registered_at"`
+	Active       bool      `json:"active"`
 }
 
-func (crs *Course) TableName() string {
-	return "courses"
+func (user *UserInfo) TableName() string {
+	return "user_information"
 }

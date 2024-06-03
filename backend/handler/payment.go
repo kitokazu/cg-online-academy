@@ -10,9 +10,14 @@ import (
 	"os"
 	"strings"
 
+	//"time"
+
 	"github.com/joho/godotenv"
+	"github.com/kitokazu/cg-online-academy/database"
 	"github.com/stripe/stripe-go/v78"
 	"github.com/stripe/stripe-go/v78/checkout/session"
+	"github.com/stripe/stripe-go/v78/customer"
+
 	"github.com/stripe/stripe-go/v78/price"
 )
 
@@ -20,6 +25,10 @@ type CheckoutSessionRequest struct {
 	Email        string `json:"email"`
 	Name         string `json:"name"`
 	CourseNumber string `json:"course_number"`
+}
+
+type Payment struct {
+	DatabaseConn *database.Database
 }
 
 func HandleConfig(w http.ResponseWriter, r *http.Request) {
@@ -40,7 +49,7 @@ func HandleConfig(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
-func CreateCheckoutSession(w http.ResponseWriter, r *http.Request) {
+func (p *Payment) CreateCheckoutSession(w http.ResponseWriter, r *http.Request) {
 	// *Reminder to create webhooks
 	// *Reminder to allow access to multiple langugages (japanese)
 	var req CheckoutSessionRequest
@@ -63,6 +72,19 @@ func CreateCheckoutSession(w http.ResponseWriter, r *http.Request) {
 	// Frontend Route
 	domain := "http://localhost:3000"
 
+	//* IMPORTANT: In another function, check if a customer already exists
+	// A customer exists if a course is active and their email & course_id are the same
+
+	customerParams := &stripe.CustomerParams{
+		Name:  stripe.String(req.Name),
+		Email: stripe.String(req.Email),
+	}
+	customerParams.AddMetadata("course_id", req.CourseNumber)
+	customerResult, err := customer.New(customerParams)
+	if err != nil {
+		log.Printf("session.New: %v", err)
+	}
+
 	params := &stripe.CheckoutSessionParams{
 		UIMode:    stripe.String("embedded"),
 		ReturnURL: stripe.String(domain + "/return?session_id={CHECKOUT_SESSION_ID}"),
@@ -72,8 +94,8 @@ func CreateCheckoutSession(w http.ResponseWriter, r *http.Request) {
 				Quantity: stripe.Int64(1),
 			},
 		},
-		Mode:          stripe.String(string(stripe.CheckoutSessionModePayment)),
-		CustomerEmail: stripe.String(req.Email),
+		Mode:     stripe.String(string(stripe.CheckoutSessionModePayment)),
+		Customer: stripe.String(customerResult.ID),
 	}
 
 	s, err := session.New(params)
@@ -86,6 +108,20 @@ func CreateCheckoutSession(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Internal Server Error: Client secret is missing", http.StatusInternalServerError)
 		return
 	}
+
+	// Append to database
+	// checkoutInfo := database.UserInfo{
+	// 	CustomerID:   "testingcustomerID",
+	// 	Name:         "testingname",
+	// 	Email:        "testing@gdfslsfs.com",
+	// 	CourseID:     "1",
+	// 	RegisteredAt: time.Now(),
+	// 	Active:       true,
+	// }
+	// err = p.DatabaseConn.AddUserInformation(checkoutInfo)
+	// if err != nil {
+	// 	log.Printf("Error occured while adding user info: %v", err)
+	// }
 
 	writeJSON(w, struct {
 		ClientSecret string `json:"clientSecret"`
@@ -115,6 +151,7 @@ func RetrieveCheckoutSession(w http.ResponseWriter, r *http.Request) {
 		Status:        string(s.Status),
 		CustomerEmail: string(s.CustomerDetails.Email),
 	})
+
 }
 
 func writeJSON(w http.ResponseWriter, v interface{}) {

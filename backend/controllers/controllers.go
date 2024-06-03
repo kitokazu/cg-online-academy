@@ -7,7 +7,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/stripe/stripe-go/v78"
 
-	//"github.com/stripe/stripe-go/v78/price"
+	//"github.com/stripe/stripe-go/v78/customer"
 	"github.com/stripe/stripe-go/v78/paymentintent"
 )
 
@@ -45,8 +45,8 @@ func GetPrice() {
 	// fmt.Println(c)
 
 	// fetch a customer
-	// c, _ := customer.Get("cus_QBVoMgUePtYUVr", nil)
-	// fmt.Println(c)
+	// c, _ := customer.Get("cus_QDwUtrwTS6ANkf", nil)
+	// fmt.Println(c.Metadata)
 
 	//create customer with scalar values
 	// params := &stripe.CustomerParams{

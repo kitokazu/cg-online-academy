@@ -11,9 +11,8 @@ import (
 )
 
 func main() {
-	// Starting App
+	// Initializaing app and database
 	app := application.New()
-	app.Initialize()
 	controllers.GetPrice()
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt)
 	defer cancel()

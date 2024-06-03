@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { UserProps } from './CheckoutPage'
 import validator from "validator" // email validator
+import axios from 'axios'
 
 interface InputTypes {
   checkout: boolean, // whether the modal is open or not
@@ -10,9 +11,10 @@ interface InputTypes {
   setFormComplete: (val:boolean) => void, // set form to be complete
   userInfo: UserProps, // user information {name, email}
   setUserInfo: (obj: UserProps) => void // set user information
+  courseNumber: string // course number
 }
 
-const InputModal = ({checkout, setCheckout, isFormComplete, setFormComplete, userInfo, setUserInfo} : InputTypes ) => {
+const InputModal = ({checkout, setCheckout, isFormComplete, setFormComplete, userInfo, setUserInfo, courseNumber} : InputTypes ) => {
     const [emailError, setEmailError] = useState<string | null>()
 
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,11 +29,21 @@ const InputModal = ({checkout, setCheckout, isFormComplete, setFormComplete, use
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (validator.isEmail(userInfo.email)) {
+          checkUserExist()
           setFormComplete(true)
         } else {
           setEmailError("Please enter a valid email address")
         }
     };
+
+    const checkUserExist = async () => {
+      try {
+          const response = await axios.post("http://localhost:8000/database/check-active-user", {email: userInfo.email, course_id: courseNumber});
+          console.log(response)
+      } catch(error) {
+          console.log(error)
+      }
+  }
 
   
   return (
