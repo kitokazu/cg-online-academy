@@ -1,8 +1,6 @@
 # Sensitive environment variables
 /backend/.env
 
-# Golang Backend Information
-/backend/go.mod
 
 # live refresh
 /backend/.air.toml

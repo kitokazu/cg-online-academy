@@ -6,8 +6,8 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/kitokazu/cg-online-academy/application"
-	"github.com/kitokazu/cg-online-academy/controllers"
+	"github.com/kitokazu/cg-online-academy/backend/application"
+	"github.com/kitokazu/cg-online-academy/backend/controllers"
 )
 
 func main() {

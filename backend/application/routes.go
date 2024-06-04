@@ -6,8 +6,8 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
-	"github.com/kitokazu/cg-online-academy/database"
-	"github.com/kitokazu/cg-online-academy/handler"
+	"github.com/kitokazu/cg-online-academy/backend/database"
+	"github.com/kitokazu/cg-online-academy/backend/handler"
 )
 
 func (a *App) loadRoutes() {

@@ -7,16 +7,17 @@ import axios from 'axios'
 interface InputTypes {
   checkout: boolean, // whether the modal is open or not
   setCheckout: (val: boolean) => void, // close the modal
-  isFormComplete: boolean, // whether form is complete
   setFormComplete: (val:boolean) => void, // set form to be complete
   userInfo: UserProps, // user information {name, email}
   setUserInfo: (obj: UserProps) => void // set user information
   courseNumber: string // course number
+  setUserExist: (val:boolean) => void // whether the user already exists, checked after submission
 }
 
-const InputModal = ({checkout, setCheckout, isFormComplete, setFormComplete, userInfo, setUserInfo, courseNumber} : InputTypes ) => {
+const InputModal = ({checkout, setCheckout, setFormComplete, userInfo, setUserInfo, courseNumber, setUserExist} : InputTypes ) => {
     const [emailError, setEmailError] = useState<string | null>()
 
+    //Add things like school/organization, and how the user found about the course itsefl
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUserInfo({...userInfo, "name": e.target.value})
     };
@@ -39,7 +40,7 @@ const InputModal = ({checkout, setCheckout, isFormComplete, setFormComplete, use
     const checkUserExist = async () => {
       try {
           const response = await axios.post("http://localhost:8000/database/check-active-user", {email: userInfo.email, course_id: courseNumber});
-          console.log(response)
+          setUserExist(response.data.status);
       } catch(error) {
           console.log(error)
       }

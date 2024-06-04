@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import StripeCard from './StripeCard'
 import InputModal from './InputModal'
 import { useState } from 'react'
-import axios from "axios"
+import UserExistsModal from './UserExistsModal'
 
 interface CheckoutProps {
     courseNumber: string
@@ -38,17 +38,18 @@ const CheckoutPage = ({courseNumber, checkout, setCheckout}: CheckoutProps) => {
 
   return (
     <div>
-        {checkout && isFormComplete && !userExist ? 
-        <StripeCard courseNumber={courseNumber} userInfo={userInfo} 
-        checkout = {checkout} setCheckout = {setCheckout} />
-        : 
-        userExist ? 
-        null :
-        <InputModal checkout = {checkout} setCheckout = {setCheckout} 
-        isFormComplete = {isFormComplete} setFormComplete = {setFormComplete}
-         userInfo = {userInfo} setUserInfo = {setUserInfo} courseNumber = {courseNumber}/>}
-
-      
+        <Suspense fallback = {<p>Loading...</p>}>
+            {checkout && isFormComplete && !userExist ? 
+            <StripeCard courseNumber={courseNumber} userInfo={userInfo} 
+            checkout = {checkout} setCheckout = {setCheckout} />
+            : 
+            userExist ? 
+            <Suspense fallback = {<p>Loading...</p>}>
+            <UserExistsModal checkout = {checkout} setCheckout = {setCheckout} courseNumber = {courseNumber} email = {userInfo.email}/> </Suspense>:
+            <InputModal checkout = {checkout} setCheckout = {setCheckout} 
+            setFormComplete = {setFormComplete} userInfo = {userInfo} 
+            setUserInfo = {setUserInfo} courseNumber = {courseNumber} setUserExist = {setUserExist}/>}
+        </Suspense>
     </div>
   )
 }

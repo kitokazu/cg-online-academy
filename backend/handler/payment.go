@@ -13,7 +13,7 @@ import (
 	//"time"
 
 	"github.com/joho/godotenv"
-	"github.com/kitokazu/cg-online-academy/database"
+	"github.com/kitokazu/cg-online-academy/backend/database"
 	"github.com/stripe/stripe-go/v78"
 	"github.com/stripe/stripe-go/v78/checkout/session"
 	"github.com/stripe/stripe-go/v78/customer"
@@ -50,7 +50,6 @@ func HandleConfig(w http.ResponseWriter, r *http.Request) {
 }
 
 func (p *Payment) CreateCheckoutSession(w http.ResponseWriter, r *http.Request) {
-	// *Reminder to create webhooks
 	// *Reminder to allow access to multiple langugages (japanese)
 	var req CheckoutSessionRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
@@ -108,20 +107,6 @@ func (p *Payment) CreateCheckoutSession(w http.ResponseWriter, r *http.Request) 
 		http.Error(w, "Internal Server Error: Client secret is missing", http.StatusInternalServerError)
 		return
 	}
-
-	// Append to database
-	// checkoutInfo := database.UserInfo{
-	// 	CustomerID:   "testingcustomerID",
-	// 	Name:         "testingname",
-	// 	Email:        "testing@gdfslsfs.com",
-	// 	CourseID:     "1",
-	// 	RegisteredAt: time.Now(),
-	// 	Active:       true,
-	// }
-	// err = p.DatabaseConn.AddUserInformation(checkoutInfo)
-	// if err != nil {
-	// 	log.Printf("Error occured while adding user info: %v", err)
-	// }
 
 	writeJSON(w, struct {
 		ClientSecret string `json:"clientSecret"`

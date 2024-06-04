@@ -91,7 +91,7 @@ func (conn *Database) AddUserInformation(event stripe.PaymentIntent) {
 	// Fetch customer details
 	info, err := customer.Get(customerID, nil)
 	if err != nil {
-		log.Printf("Error occured while Testing")
+		log.Printf("Error occured while getting customer")
 		return
 	}
 
@@ -103,14 +103,8 @@ func (conn *Database) AddUserInformation(event stripe.PaymentIntent) {
 		RegisteredAt: time.Now(),
 		Active:       true,
 	}
-
-	rows, err := pool.Query(context.Background(), "SELECT * FROM users")
-	if err != nil {
-		log.Fatalf("Error executing query: %v\n", err)
-	}
-	defer rows.Close()
-	log.Println("Printing USER rows")
-	log.Println(rows)
+	log.Println("Printing Customer Info in database")
+	log.Println(customerInfo)
 
 	insertQuery := `
 	INSERT INTO users (customer_id, name, email, course_id, registered_at, active)

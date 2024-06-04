@@ -39,8 +39,6 @@ func (p *Payment) HandleWebhook(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			return
 		}
-		// Add metadata to the checkout session then?
-		// Goal is to only create a new customer if checkout completed
 
 	case "payment_intent.succeeded": // For $0 courses, checkout.sesion.completed gets invoked
 		var paymentIntent stripe.PaymentIntent
