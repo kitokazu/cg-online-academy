@@ -17,7 +17,6 @@ type App struct {
 }
 
 func initializeDatabase() *pgxpool.Pool {
-	// Differnce between pgx and pgxpool
 	err := godotenv.Load()
 	if err != nil {
 		fmt.Println("Error loading .env file")

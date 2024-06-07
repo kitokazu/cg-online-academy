@@ -27,11 +27,16 @@ const InputModal = ({checkout, setCheckout, setFormComplete, userInfo, setUserIn
 
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (validator.isEmail(userInfo.email)) {
-          checkUserExist()
-          setFormComplete(true)
+          const val = await checkUserExist()
+          new Promise(resolve => {
+            setTimeout(() => resolve(5000));
+          });
+          setUserExist(val)
+          setFormComplete(!val)
+
         } else {
           setEmailError("Please enter a valid email address")
         }
@@ -40,9 +45,11 @@ const InputModal = ({checkout, setCheckout, setFormComplete, userInfo, setUserIn
     const checkUserExist = async () => {
       try {
           const response = await axios.post("http://localhost:8000/database/check-active-user", {email: userInfo.email, course_id: courseNumber});
-          setUserExist(response.data.status);
+          const res = response.data.status // is user active or not
+          return res
       } catch(error) {
           console.log(error)
+          return error
       }
   }
 

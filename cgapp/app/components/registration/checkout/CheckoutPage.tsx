@@ -45,7 +45,8 @@ const CheckoutPage = ({courseNumber, checkout, setCheckout}: CheckoutProps) => {
             : 
             userExist ? 
             <Suspense fallback = {<p>Loading...</p>}>
-            <UserExistsModal checkout = {checkout} setCheckout = {setCheckout} courseNumber = {courseNumber} email = {userInfo.email}/> </Suspense>:
+            <UserExistsModal checkout = {checkout} setCheckout = {setCheckout} courseNumber = {courseNumber} email = {userInfo.email}/> 
+            </Suspense>:
             <InputModal checkout = {checkout} setCheckout = {setCheckout} 
             setFormComplete = {setFormComplete} userInfo = {userInfo} 
             setUserInfo = {setUserInfo} courseNumber = {courseNumber} setUserExist = {setUserExist}/>}
