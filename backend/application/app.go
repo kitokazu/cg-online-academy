@@ -41,6 +41,7 @@ func initializeDatabase() *pgxpool.Pool {
 
 	fmt.Println("Database connected")
 	// defer pool.Close()
+	
 	return pool
 }
 

@@ -76,6 +76,7 @@ func (a *App) loadDatabaseRoutes(router chi.Router) {
 		Pool: a.db,
 	}
 	router.Post("/check-active-user", databaseConn.CheckActiveUser)
+	router.Post("/verify-email", databaseConn.VerifyEmail)
 }
 
 /*

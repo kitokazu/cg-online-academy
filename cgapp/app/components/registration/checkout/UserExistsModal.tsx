@@ -9,6 +9,7 @@ interface UserExists {
 }
 const UserExistsModal = ({checkout, setCheckout, courseNumber, email}: UserExists) => {
   return (
+    <>
     <dialog open = {checkout} className="modal">
         <div className="modal-box">
         <div>
@@ -23,6 +24,7 @@ const UserExistsModal = ({checkout, setCheckout, courseNumber, email}: UserExist
         </div>
         </div>
     </dialog>
+    </>
   )
 }
 

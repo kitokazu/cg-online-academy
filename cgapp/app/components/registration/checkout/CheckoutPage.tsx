@@ -3,6 +3,7 @@ import StripeCard from './StripeCard'
 import InputModal from './InputModal'
 import { useState } from 'react'
 import UserExistsModal from './UserExistsModal'
+import NetworkErrModal from './NetworkErrModal'
 
 interface CheckoutProps {
     courseNumber: string
@@ -22,6 +23,7 @@ const CheckoutPage = ({courseNumber, checkout, setCheckout}: CheckoutProps) => {
     */
     const [isFormComplete, setFormComplete] = useState<boolean>(false)
     const [userExist, setUserExist] = useState<boolean>(false)
+    const [networkError, setNetworkError] = useState<boolean>(false) // network err initially
 
     const [userInfo, setUserInfo] = useState<UserProps>({name: "", email: ""})
 
@@ -32,7 +34,7 @@ const CheckoutPage = ({courseNumber, checkout, setCheckout}: CheckoutProps) => {
     useEffect(() => {
         setFormComplete(false)
         setUserInfo({name: "", email: ""})
-    }, [checkout])
+    }, [checkout, networkError])
 
 
 
@@ -47,9 +49,10 @@ const CheckoutPage = ({courseNumber, checkout, setCheckout}: CheckoutProps) => {
             <Suspense fallback = {<p>Loading...</p>}>
             <UserExistsModal checkout = {checkout} setCheckout = {setCheckout} courseNumber = {courseNumber} email = {userInfo.email}/> 
             </Suspense>:
+            networkError ? <NetworkErrModal setNetworkError={setNetworkError}/> :
             <InputModal checkout = {checkout} setCheckout = {setCheckout} 
             setFormComplete = {setFormComplete} userInfo = {userInfo} 
-            setUserInfo = {setUserInfo} courseNumber = {courseNumber} setUserExist = {setUserExist}/>}
+            setUserInfo = {setUserInfo} courseNumber = {courseNumber} setUserExist = {setUserExist} setNetworkError={setNetworkError}/>}
         </Suspense>
     </div>
   )

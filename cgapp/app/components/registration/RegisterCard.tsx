@@ -5,6 +5,7 @@ import Image, { StaticImageData } from 'next/image';
 import styles from "../../registration/Registration.module.css";
 import {motion, useInView, useAnimation} from "framer-motion";
 import CheckoutPage from './checkout/CheckoutPage';
+import Link from "next/link";
 
 
 interface RegisterCard {
@@ -75,11 +76,12 @@ const RegisterCard = ({courseNumber, borderColor, picture, courseHeader, price, 
             </ul>
             <div className = "flex justify-end items-end">
               <div className = "p-5">
-                <button className="btn btn-neutral border-cyan-100 btn-xsm sm:btn-sm lg:btn-md text-header" onClick = {() => setCheckout(true)}>Register</button>
+                {courseNumber === '1' || courseNumber === '2' ?
+                <button className="btn btn-neutral border-cyan-100 btn-xsm sm:btn-sm lg:btn-md text-header"><Link href="./free-teaching">View</Link></button>:
+                <button className="btn btn-neutral border-cyan-100 btn-xsm sm:btn-sm lg:btn-md text-header" onClick = {() => setCheckout(true)}>Register</button>}
+
               </div>
             </div>
-            
-
           </div>
         </section>
       </motion.div>

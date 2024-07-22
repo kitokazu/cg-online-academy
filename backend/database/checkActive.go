@@ -17,7 +17,27 @@ func (conn *Database) CheckActiveUser(w http.ResponseWriter, r *http.Request) {
 	// Get the user email and the course that they are registering
 	// If it exists in the User database and it is currently active, then return true
 	// Else return False as user does not exist
+
 	pool := conn.Pool
+
+	// createTable := `
+	// CREATE TABLE IF NOT EXISTS users (
+	// id SERIAL PRIMARY KEY,
+	// customer_id TEXT NOT NULL,
+	// name TEXT NOT NULL,
+	// email TEXT NOT NULL,
+	// course_id TEXT NOT NULL,
+	// registered_at DATE NOT NULL,
+	// active BOOLEAN NOT NULL
+	// );
+	// `
+	// _, err := pool.Exec(context.Background(), createTable)
+	// log.Println("Table created")
+	// if err != nil {
+	// 	log.Println("eror while creating users")
+	// 	return
+	// }
+
 	searchQuery := `
 	SELECT COUNT (*) FROM users
 	WHERE email = $1 AND course_id = $2 AND active = true

@@ -12,12 +12,15 @@ interface InputTypes {
   setUserInfo: (obj: UserProps) => void // set user information
   courseNumber: string // course number
   setUserExist: (val:boolean) => void // whether the user already exists, checked after submission
+  setNetworkError: (val: boolean) => void; 
 }
 
-const InputModal = ({checkout, setCheckout, setFormComplete, userInfo, setUserInfo, courseNumber, setUserExist} : InputTypes ) => {
+// HANDLE AXIOS ERRORS
+
+const InputModal = ({checkout, setCheckout, setFormComplete, userInfo, setUserInfo, courseNumber, setUserExist, setNetworkError} : InputTypes ) => {
     const [emailError, setEmailError] = useState<string | null>()
 
-    //Add things like school/organization, and how the user found about the course itsefl
+    // Add things like school/organization, and how the user found about the course itsefl
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUserInfo({...userInfo, "name": e.target.value})
     };
@@ -30,30 +33,28 @@ const InputModal = ({checkout, setCheckout, setFormComplete, userInfo, setUserIn
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (validator.isEmail(userInfo.email)) {
-          const val = await checkUserExist()
-          new Promise(resolve => {
-            setTimeout(() => resolve(5000));
-          });
-          setUserExist(val)
-          setFormComplete(!val)
+          // const val = await checkUserExist()
 
+          try {
+            new Promise(resolve => {
+              setTimeout(() => resolve(10000));
+            });
+            const response = await axios.post("http://localhost:8000/database/check-active-user", {email: userInfo.email, course_id: courseNumber});
+            const res = response.data.status // is user active or not
+            setUserExist(res);
+            setFormComplete(!res);
+          } catch(error) {
+            console.log(error)
+            // Show error modal for network connection
+            setNetworkError(true); 
+          }
         } else {
           setEmailError("Please enter a valid email address")
         }
     };
 
-    const checkUserExist = async () => {
-      try {
-          const response = await axios.post("http://localhost:8000/database/check-active-user", {email: userInfo.email, course_id: courseNumber});
-          const res = response.data.status // is user active or not
-          return res
-      } catch(error) {
-          console.log(error)
-          return error
-      }
-  }
 
-  
+
   return (
     <dialog open = {checkout} className="modal">
     <div className="modal-box">
