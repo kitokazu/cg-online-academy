@@ -41,7 +41,7 @@ func initializeDatabase() *pgxpool.Pool {
 
 	fmt.Println("Database connected")
 	// defer pool.Close()
-	
+
 	return pool
 }
 
@@ -81,3 +81,20 @@ func (a *App) Start(ctx context.Context) error {
 	}
 
 }
+
+// query := `
+// CREATE TABLE IF NOT EXISTS users (
+// 	id SERIAL PRIMARY KEY,
+// 	name TEXT NOT NULL,
+// 	email TEXT NOT NULL,
+// 	password TEXT NOT NULL,
+// 	registered_courses TEXT[],
+// 	date_created TIMESTAMP NOT NULL,
+// 	last_active TIMESTAMP NOT NULL
+// )`
+
+// _, err := pool.Exec(context.Background(), query)
+// if err != nil {
+// 	log.Printf(err.Error())
+// 	return
+// }

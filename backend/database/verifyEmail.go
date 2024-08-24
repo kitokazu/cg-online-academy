@@ -10,6 +10,10 @@ import (
 	"time"
 )
 
+// NOtes
+// Decoder -- Unmarshal from json - string
+// Encode -- Marhsal from string -json
+
 func (conn *Database) VerifyEmail(w http.ResponseWriter, r *http.Request) {
 	// Should we check if its a valid email in frontend?
 	// make sure to set random seed
@@ -54,11 +58,12 @@ func (conn *Database) VerifyEmail(w http.ResponseWriter, r *http.Request) {
 		log.Fatalf("Exec failed: %v\n", err)
 	}
 
-	fmt.Println("Insert or update operation was successful.")
+	// If everything good, we know the user exists. So send that 6 digit code in "randomNumber" to email
+	// Give this email a life of 10 minutes before the active column in verify turns to False
 
 	response := struct {
 		Status bool `json:"status"`
-	}{
+	}{ // this is if the user exists in the users database
 		Status: exists,
 	}
 
