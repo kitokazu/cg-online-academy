@@ -14,6 +14,7 @@ type Database struct {
 	Pool *pgxpool.Pool
 }
 
+// NOte will be replaecd with postgres database
 func (conn *Database) AddUserInformation(event stripe.PaymentIntent) {
 	pool := conn.Pool
 	if event.Customer == nil {
