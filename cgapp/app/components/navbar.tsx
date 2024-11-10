@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-//z-index = z-10
 const Navbar = () => {
     return (
         <div className="navbar sticky left-0 top-0 bg-neutral-700 text-header z-30">
@@ -30,7 +29,9 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="">Login</a>
+          <ul className="menu menu-horizontal px-1">
+            <li><Link href="./login">Login</Link></li>
+          </ul>
         </div>
       </div>
     )

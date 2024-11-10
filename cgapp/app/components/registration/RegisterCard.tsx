@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef } from 'react';
 import Image, { StaticImageData } from 'next/image';
-import styles from "../../registration/Registration.module.css";
 import {motion, useInView, useAnimation} from "framer-motion";
 
 interface RegisterCard {
@@ -38,7 +37,7 @@ const RegisterCard = ({borderColor, picture, courseHeader, price, durationStart,
       }}
       className = "text-white flex justify-center py-7"
       >
-        <section className = {`bg-gradient-to-br shadow-md shadow-gray-900 from-slate-600 to-slate-900 grid grid-cols-3 w-4/6 ${styles.borderEdge} rounded-lg ${borderColor}`}>
+        <section className = {`bg-gradient-to-br shadow-md shadow-gray-900 from-slate-600 to-slate-900 grid grid-cols-3 w-4/6 rounded-lg ${borderColor}`}>
           <div className = "p-3">
           <Image
               src={picture}
