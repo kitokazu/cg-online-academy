@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-//z-index = z-10
 const Navbar = () => {
     return (
         <div className="navbar sticky left-0 top-0 bg-neutral-700 text-header z-30">
@@ -16,7 +15,6 @@ const Navbar = () => {
             <li><Link href="./installations">Installations</Link></li>
             </ul>
           </div>
-          {/*<a className="btn btn-ghost text-xl">daisyUI</a>*/}
 
             <h1 className = "pl-5"><Link href = "./"><strong>CG</strong>-Online</Link></h1>
          </div>
