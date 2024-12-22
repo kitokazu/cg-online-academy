@@ -3,8 +3,8 @@
 import { ScrollControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import React from 'react'
-import { Overlay } from '../components/student-works/Overlay'
-import { TestBox } from '../components/student-works/TestBox'
+import { Overlay } from './_student-works/Overlay'
+import { TestBox } from './_student-works/TestBox'
 
 const Demos = () => {
   return (

@@ -1,13 +1,16 @@
 import Link from "next/link";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Content from "./components/home/Content";
-import Faq from "./components/home/Faq";
+import Content from "./_components/Content";
+import Faq from "./_components/Faq";
 
 /* Navbar: Logo (Home) Register, Student Works, Free Teaching Materials, Installations, Login?
    Footer: Terms of Use (all the legal information), Refund/Return, Contact, Socials
 */
 
+/*
+  ============================== 
+   Home Page:
+  ============================== 
+*/
 
 export default function Home() {
   return (

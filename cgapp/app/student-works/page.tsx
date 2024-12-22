@@ -1,11 +1,11 @@
 import React from 'react'
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import Navbar from '../_components/Navbar';
+import Footer from '../_components/Footer';
 
 import { Canvas } from "@react-three/fiber";
 import { ScrollControls } from '@react-three/drei'
-import { TestBox } from '../components/student-works/TestBox';
-import { Overlay } from '../components/student-works/Overlay';
+import { TestBox } from './_student-works/TestBox';
+import { Overlay } from './_student-works/Overlay';
 import Demos from './demos';
 
 const StudentWorks = () => {

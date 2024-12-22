@@ -8,6 +8,9 @@ Source: https://sketchfab.com/3d-models/retro-computer-setup-free-82eaf2047e0447
 Title: Retro Computer Setup (FREE)
 */
 
+// Not in use, for reference
+
+
 import * as THREE from 'three'
 import React, { useRef, useLayoutEffect, useEffect } from 'react'
 import { useGLTF, useScroll } from '@react-three/drei'
