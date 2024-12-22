@@ -1,6 +1,5 @@
-import Link from "next/link";
-import Content from "./_components/Content";
-import Faq from "./_components/Faq";
+import Content from "./_home/Content";
+import Faq from "./_home/Faq";
 
 /* Navbar: Logo (Home) Register, Student Works, Free Teaching Materials, Installations, Login?
    Footer: Terms of Use (all the legal information), Refund/Return, Contact, Socials

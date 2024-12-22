@@ -1,9 +1,6 @@
 import React from 'react'
-import Navbar from '../_components/Navbar';
-import Footer from '../_components/Footer';
-import Image from 'next/image';
 import Expic from "../../public/cover.png";
-import RegisterCard from '../_components/registration/RegisterCard';
+import RegisterCard from './_registration/RegisterCard';
 
 // For right now, don't focus on add to cart feature, just add a register button
 

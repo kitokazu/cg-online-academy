@@ -1,7 +1,7 @@
 
 import React from 'react';
-import Maya from '../components/installations/Maya';
-import Zoom from '../components/installations/Zoom';
+import Maya from './_installations/Maya';
+import Zoom from './_installations/Zoom';
 
 const Installations = () => {
   return (
