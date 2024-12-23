@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Maya from './_installations/Maya';
 import Zoom from './_installations/Zoom';
