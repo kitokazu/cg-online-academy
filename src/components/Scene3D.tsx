@@ -1,47 +1,8 @@
 import { useRef, useMemo, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
+
 import { useFBX, Float } from '@react-three/drei';
 import * as THREE from 'three';
-
-function FloatingParticles() {
-  const meshRef = useRef<THREE.Points>(null);
-  const count = 300;
-
-  const [positions, sizes] = useMemo(() => {
-    const pos = new Float32Array(count * 3);
-    const sz = new Float32Array(count);
-    for (let i = 0; i < count; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 25;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 25;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 25;
-      sz[i] = Math.random() * 2 + 0.5;
-    }
-    return [pos, sz];
-  }, []);
-
-  useFrame((state) => {
-    if (!meshRef.current) return;
-    meshRef.current.rotation.y = state.clock.elapsedTime * 0.015;
-  });
-
-  return (
-    <points ref={meshRef}>
-      <bufferGeometry>
-        <bufferAttribute attach="attributes-position" count={count} array={positions} itemSize={3} />
-        <bufferAttribute attach="attributes-size" count={count} array={sizes} itemSize={1} />
-      </bufferGeometry>
-      <pointsMaterial
-        size={0.03}
-        color="#c46a72"
-        transparent
-        opacity={0.25}
-        sizeAttenuation
-        blending={THREE.AdditiveBlending}
-        depthWrite={false}
-      />
-    </points>
-  );
-}
 
 function FBXModel() {
   const groupRef = useRef<THREE.Group>(null);
@@ -121,7 +82,6 @@ export default function Scene3D() {
         <directionalLight position={[5, 5, 5]} intensity={1.2} color="#ffffff" />
         <directionalLight position={[-3, 2, 4]} intensity={0.4} color="#c46a72" />
         <pointLight position={[0, -3, 3]} intensity={0.3} color="#c46a72" />
-        <FloatingParticles />
         <FBXModel />
       </Canvas>
     </div>

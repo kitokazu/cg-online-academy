@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-The main objective is to refactor the original site which is cgonline.biz
+The main objective is to refactor the original site which is cgonline.biz.
 
 CG Online Academy — a modern React landing page for an online 3D character modeling academy. This is a redesign of a legacy Jimdo-based site, rebuilt as a client-side SPA with no backend. The site is Japanese-language focused, targeting students learning CG from a professional instructor with Hollywood experience.
 
@@ -72,3 +72,9 @@ Navigation → HeroSection (with 3D scene) → AboutSection → InstructorSectio
 - Every animation must serve a purpose
 - Copy must be specific and grounded — no generic hero lines or filler phrases
 - Remove anything that signals "vibe-coded" design: sparkles, random emojis, inconsistent spacing, mismatched radiuses, broken responsiveness
+
+## Strict Rules
+
+- Currently the website is in Japanese (for now, maybe in the future we will add an English integration)
+- Adhere to the STYLING.md guidelines, and use frontend design skills
+- Do not add any new content that is not present in the original Jimdo site

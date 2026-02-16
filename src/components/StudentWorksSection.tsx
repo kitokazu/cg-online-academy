@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import work1 from '@/assets/student-work-1.jpg';
 import work2 from '@/assets/student-work-2.jpg';
 import work3 from '@/assets/student-work-3.jpg';
@@ -17,7 +19,7 @@ export default function StudentWorksSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <p className="text-primary text-sm tracking-[0.2em] uppercase mb-4">Student Works</p>
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
@@ -51,6 +53,20 @@ export default function StudentWorksSection() {
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mt-12"
+        >
+          <Link
+            to="/student-works"
+            className="inline-flex items-center gap-2 text-sm text-primary hover:text-gold-light transition-colors duration-300"
+          >
+            もっと見る <ArrowRight className="w-4 h-4" />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

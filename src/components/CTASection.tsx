@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 export default function CTASection() {
@@ -22,18 +23,18 @@ export default function CTASection() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <a
-              href="#"
+            <Link
+              to="/classes"
               className="px-10 py-4 bg-primary text-primary-foreground font-semibold rounded-md hover:bg-gold-light transition-all duration-300 glow-gold text-lg"
             >
               無料体験に申し込む
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to="/free-materials"
               className="px-10 py-4 border border-border text-foreground font-medium rounded-md hover:border-primary hover:text-primary transition-all duration-300 text-lg"
             >
-              資料をダウンロード
-            </a>
+              無料教材を見る
+            </Link>
           </div>
 
           {/* Trust signals */}

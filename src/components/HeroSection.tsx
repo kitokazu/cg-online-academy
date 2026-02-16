@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const Scene3D = lazy(() => import('./Scene3D'));
@@ -61,12 +62,12 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.75 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <a
-              href="#register"
+            <Link
+              to="/classes"
               className="px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-md hover:bg-gold-light transition-all duration-300 glow-gold text-center"
             >
               無料体験レッスン
-            </a>
+            </Link>
             <a
               href="#about"
               className="px-8 py-4 border border-border text-foreground font-medium rounded-md hover:border-primary hover:text-primary transition-all duration-300 text-center"
@@ -75,12 +76,38 @@ export default function HeroSection() {
             </a>
           </motion.div>
 
-          {/* Credentials */}
+          {/* Company credentials */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.1 }}
-            className="mt-16 flex flex-wrap gap-x-8 gap-y-3 text-muted-foreground text-sm"
+            transition={{ duration: 0.8, delay: 1.0 }}
+            className="mt-16"
+          >
+            <p className="text-muted-foreground/60 text-xs tracking-[0.15em] uppercase mb-4">
+              講師の実績企業
+            </p>
+            <div className="flex flex-wrap items-center gap-x-10 gap-y-4">
+              {[
+                { src: '/disney-logo.png', alt: 'Disney', height: 'h-12' },
+                { src: '/warner-bros-logo.png', alt: 'Warner Bros.', height: 'h-14' },
+                { src: '/nvidia-logo.png', alt: 'NVIDIA', height: 'h-12' },
+              ].map((company) => (
+                <img
+                  key={company.alt}
+                  src={company.src}
+                  alt={company.alt}
+                  className={`${company.height} w-auto object-contain grayscale opacity-60`}
+                />
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Film credits */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+            className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-muted-foreground text-sm"
           >
             {['アカデミー賞受賞作品', 'アナと雪の女王', 'ベイマックス', '塔の上のラプンツェル'].map((credit) => (
               <span key={credit} className="flex items-center gap-2">

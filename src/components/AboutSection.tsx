@@ -1,28 +1,5 @@
 import { motion } from 'framer-motion';
-import { Monitor, Users, Award, Globe } from 'lucide-react';
-
-const features = [
-  {
-    icon: Award,
-    title: 'ハリウッド品質',
-    description: 'ディズニー、ピクサーなど世界最高峰のスタジオで培われた技術を直接学べます。',
-  },
-  {
-    icon: Monitor,
-    title: 'オンライン完結',
-    description: 'Mayaを使った実践的なレッスンを、ご自宅からZOOMで受講できます。',
-  },
-  {
-    icon: Users,
-    title: '少人数制指導',
-    description: '一人ひとりに丁寧なフィードバック。あなたのペースで確実にスキルアップ。',
-  },
-  {
-    icon: Globe,
-    title: '世界基準のカリキュラム',
-    description: 'キャラクターモデリングの基礎から応用まで、業界標準のワークフローを習得。',
-  },
-];
+import { features } from '@/data/features';
 
 export default function AboutSection() {
   return (
@@ -33,7 +10,7 @@ export default function AboutSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <p className="text-primary text-sm tracking-[0.2em] uppercase mb-4">About the Course</p>
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
@@ -46,7 +23,7 @@ export default function AboutSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {features.map((feature, i) => (
             <motion.div
               key={feature.title}
