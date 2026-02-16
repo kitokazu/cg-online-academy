@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 30% 96%;
+    --foreground: 220 20% 14%;
+
+    --card: 40 25% 98%;
+    --card-foreground: 220 20% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 14%;
+
+    --primary: 355 50% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 35 20% 90%;
+    --secondary-foreground: 220 20% 20%;
+
+    --muted: 35 15% 92%;
+    --muted-foreground: 220 10% 42%;
+
+    --accent: 355 40% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 35 15% 86%;
+    --input: 35 15% 86%;
+    --ring: 355 50% 55%;
+
+    --radius: 0.5rem;
+
+    --gold: 355 50% 55%;
+    --gold-light: 355 55% 65%;
+    --gold-dark: 355 45% 42%;
+    --cinema-blue: 355 40% 60%;
+    --cinema-dark: 40 25% 93%;
+    --surface-elevated: 0 0% 100%;
+
+    --sidebar-background: 40 25% 98%;
+    --sidebar-foreground: 220 20% 14%;
+    --sidebar-primary: 355 50% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 35 20% 92%;
+    --sidebar-accent-foreground: 220 20% 20%;
+    --sidebar-border: 35 15% 86%;
+    --sidebar-ring: 355 50% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 700;
+  }
+}
+
+@layer components {
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--gold-light)), hsl(var(--gold)), hsl(var(--gold-dark)));
+  }
+
+  .border-gradient-gold {
+    border-image: linear-gradient(135deg, hsl(var(--gold-light)), hsl(var(--gold-dark))) 1;
+  }
+
+  .bg-cinema-gradient {
+    background: linear-gradient(180deg, hsl(var(--cinema-dark)) 0%, hsl(var(--background)) 100%);
+  }
+
+  .bg-surface-elevated {
+    background-color: hsl(var(--surface-elevated));
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 30px -5px hsl(var(--gold) / 0.3);
+  }
+
+  .glow-gold-text {
+    text-shadow: 0 0 40px hsl(var(--gold) / 0.4);
+  }
+
+  .cinematic-section {
+    @apply relative py-20 md:py-32;
+  }
+
+  .section-divider {
+    @apply w-16 h-px mx-auto;
+    background: linear-gradient(90deg, transparent, hsl(var(--gold)), transparent);
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--gold) / 0.5);
+}
