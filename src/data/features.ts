@@ -1,4 +1,4 @@
-import { Palette, Gift, BookOpen, Video, Headphones, Mail, ShieldCheck } from 'lucide-react';
+import { Clapperboard, Palette, Gift, BookOpen, Video, Headphones, Mail, ShieldCheck } from 'lucide-react';
 
 export interface Feature {
   icon: typeof Palette;
@@ -7,6 +7,11 @@ export interface Feature {
 }
 
 export const features: Feature[] = [
+  {
+    icon: Clapperboard,
+    title: 'ハリウッド実績',
+    description: '「アナと雪の女王」「ベイマックス」「塔の上のラプンツェル」など、ディズニー映画制作に携わった講師が直接指導します。',
+  },
   {
     icon: Palette,
     title: 'デザイン重視の指導',

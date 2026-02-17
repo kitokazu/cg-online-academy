@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -61,11 +61,16 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Noto Sans JP', sans-serif;
+    font-family: "Noto Sans JP", sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Noto Sans JP', sans-serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Noto Sans JP", sans-serif;
     font-weight: 700;
   }
 }
@@ -73,15 +78,29 @@
 @layer components {
   .text-gradient-gold {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--gold-light)), hsl(var(--gold)), hsl(var(--gold-dark)));
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--gold-light)),
+      hsl(var(--gold)),
+      hsl(var(--gold-dark))
+    );
   }
 
   .border-gradient-gold {
-    border-image: linear-gradient(135deg, hsl(var(--gold-light)), hsl(var(--gold-dark))) 1;
+    border-image: linear-gradient(
+        135deg,
+        hsl(var(--gold-light)),
+        hsl(var(--gold-dark))
+      )
+      1;
   }
 
   .bg-cinema-gradient {
-    background: linear-gradient(180deg, hsl(var(--cinema-dark)) 0%, hsl(var(--background)) 100%);
+    background: linear-gradient(
+      180deg,
+      hsl(var(--cinema-dark)) 0%,
+      hsl(var(--background)) 100%
+    );
   }
 
   .bg-surface-elevated {
@@ -97,12 +116,17 @@
   }
 
   .cinematic-section {
-    @apply relative py-16 md:py-24;
+    @apply relative py-8 md:py-16;
   }
 
   .section-divider {
     @apply w-16 h-px mx-auto;
-    background: linear-gradient(90deg, transparent, hsl(var(--gold)), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--gold)),
+      transparent
+    );
   }
 }
 
