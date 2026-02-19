@@ -1,41 +1,9 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Play, ArrowRight, BookOpen } from 'lucide-react';
+import { ArrowRight, BookOpen } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import PageLayout from '@/components/PageLayout';
-
-const freeLessons = [
-  {
-    title: 'カエル',
-    description: 'シンプルなカエルのワイヤーフレームモデリングで基本操作を学びます。',
-  },
-  {
-    title: 'ヘビ',
-    description: 'ヘビの制作を通じてカーブやエッジフローの基本を理解します。',
-  },
-  {
-    title: 'ネコ',
-    description: '四足動物のモデリングで、体のプロポーションと構造を学びます。',
-  },
-  {
-    title: 'イヌ',
-    description: 'より複雑な四足動物のモデリングに挑戦し、スキルを磨きます。',
-  },
-];
-
-const youtubeVideos = [
-  {
-    title: 'クラス解説動画',
-    description: 'CG Online Academyのクラス内容を詳しくご紹介します。',
-    embedId: 'dQw4w9WgXcQ',
-  },
-  {
-    title: '授業風景',
-    description: '実際のライブセッションの様子をご覧いただけます。',
-    embedId: 'dQw4w9WgXcQ',
-  },
-];
 
 export default function FreeMaterials() {
   return (
@@ -61,9 +29,9 @@ export default function FreeMaterials() {
         </div>
       </section>
 
-      {/* Free Maya Course */}
+      {/* Class 0 — Maya Basics */}
       <section className="cinematic-section">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-6 max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -71,39 +39,44 @@ export default function FreeMaterials() {
             className="text-center mb-12"
           >
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              無料Mayaコース — <span className="text-gradient-gold">基本ワイヤーフレーム</span>
+              クラス 0 — <span className="text-gradient-gold">Maya 基本操作</span>
             </h2>
             <p className="text-muted-foreground">
-              簡単な動物モデルの制作を通じて、Mayaの基本操作を身につけましょう。
+              Mayaのインターフェースからオブジェクト操作まで、基礎を段階的に学べるチュートリアルです。
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {freeLessons.map((lesson, i) => (
-              <motion.div
-                key={lesson.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <Card className="h-full bg-card border border-border hover:border-primary/30 transition-all duration-500 group">
-                  <CardHeader>
-                    <div className="flex items-center justify-between mb-2">
-                      <Badge variant="secondary">無料</Badge>
-                      <BookOpen className="w-4 h-4 text-muted-foreground" />
-                    </div>
-                    <CardTitle className="text-lg">{lesson.title}</CardTitle>
-                    <CardDescription>{lesson.description}</CardDescription>
-                  </CardHeader>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <Link to="/free-materials/class-0" className="block group">
+              <Card className="bg-card border border-border hover:border-primary/30 transition-all duration-500">
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-2">
+                    <Badge variant="secondary">無料</Badge>
+                    <BookOpen className="w-4 h-4 text-muted-foreground" />
+                  </div>
+                  <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                    Maya 基本操作 1
+                  </CardTitle>
+                  <CardDescription className="text-base leading-relaxed">
+                    インターフェース、UIエレメント、オブジェクトの作成、カメラ操作、トランスフォーメーション、コンポーネント編集など、全7レッスンでMayaの基礎を習得します。
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center gap-2 text-sm text-primary font-medium">
+                    チュートリアルを始める <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          </motion.div>
         </div>
       </section>
 
-      {/* YouTube Tutorials */}
+      {/* YouTube Tutorial */}
       <section className="cinematic-section bg-cinema-gradient">
         <div className="container mx-auto px-6">
           <motion.div
@@ -118,27 +91,30 @@ export default function FreeMaterials() {
             <p className="text-muted-foreground">動画で学べるチュートリアルをご覧ください。</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {youtubeVideos.map((video, i) => (
-              <motion.div
-                key={video.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <Card className="bg-card border border-border overflow-hidden">
-                  <div className="aspect-video bg-secondary flex items-center justify-center">
-                    <Play className="w-12 h-12 text-muted-foreground/50" />
-                  </div>
-                  <CardContent className="pt-4">
-                    <h3 className="font-semibold mb-1">{video.title}</h3>
-                    <p className="text-sm text-muted-foreground">{video.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-2xl mx-auto"
+          >
+            <Card className="bg-card border border-border overflow-hidden">
+              <div className="aspect-video">
+                <iframe
+                  src="https://www.youtube.com/embed/NKn9FxdtdNE"
+                  title="CG Online Academy — クラス解説"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              </div>
+              <CardContent className="pt-4">
+                <h3 className="font-semibold mb-1">クラス解説動画</h3>
+                <p className="text-sm text-muted-foreground">
+                  CG Online Academyのクラス内容を詳しくご紹介します。
+                </p>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </section>
 

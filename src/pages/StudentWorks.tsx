@@ -105,7 +105,7 @@ export default function StudentWorks() {
             <p className="text-primary text-sm tracking-[0.2em] uppercase mb-3">
               Student Works
             </p>
-            <h1 className="text-2xl md:text-4xl font-bold mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">
               生徒<span className="text-gradient-gold">作品</span>・感想
             </h1>
             <div className="section-divider" />

@@ -1,33 +1,33 @@
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 const works = [
-  '/student-work/student1.jpg',
-  '/student-work/student2.jpg',
-  '/student-work/student4.jpg',
-  '/student-work/student5.jpg',
-  '/student-work/student6.jpeg',
+  "/student-work/student1.jpg",
+  "/student-work/student2.jpg",
+  "/student-work/student4.jpg",
+  "/student-work/student5.jpg",
+  "/student-work/student6.jpeg",
 ];
 
 const testimonials = [
   {
-    name: 'Kさん',
-    role: '会社員',
+    name: "Kさん",
+    role: "会社員",
     quote:
-      'ほぼ初心者でしたが、大変丁寧できめ細やかなご指導により、楽しく学ぶ事ができました。先生のマニュアルは非常にわかりやすく、ずっと使えるので本当にありがたいです。ほぼ初心者からのスタートでしたがモデリング技術がかなり上達しました！',
+      "ほぼ初心者でしたが、大変丁寧できめ細やかなご指導により、楽しく学ぶ事ができました。先生のマニュアルは非常にわかりやすく、ずっと使えるので本当にありがたいです。ほぼ初心者からのスタートでしたがモデリング技術がかなり上達しました！",
   },
   {
-    name: 'Mさん',
-    role: 'キャラクターデザイナー',
+    name: "Mさん",
+    role: "キャラクターデザイナー",
     quote:
-      '糸数先生の指導されるモデリング過程は、筋肉や骨の深い理解の上で進めていくのでローポリ～ハイポリまでどの過程で止めても完成度が高いです。CGに携わる方、業界を目指す方にとって、現在これ以上洗練されたメソッドは無いと思います。',
+      "糸数先生の指導されるモデリング過程は、筋肉や骨の深い理解の上で進めていくのでローポリ～ハイポリまでどの過程で止めても完成度が高いです。CGに携わる方、業界を目指す方にとって、現在これ以上洗練されたメソッドは無いと思います。",
   },
   {
-    name: 'Oさん',
-    role: 'ゲームプロデューサー',
+    name: "Oさん",
+    role: "ゲームプロデューサー",
     quote:
-      'デザインの勉強もなく、絵の知識もなく、３Dの知識もない私が、糸数先生に教えていただいた３ヶ月で、今では自分一人で好きなキャラクターの頭部を自由に作成することができます。',
+      "デザインの勉強もなく、絵の知識もなく、３Dの知識もない私が、糸数先生に教えていただいた３ヶ月で、今では自分一人で好きなキャラクターの頭部を自由に作成することができます。",
   },
 ];
 
@@ -41,7 +41,9 @@ export default function StudentWorksSection() {
           viewport={{ once: true }}
           className="text-center mb-8"
         >
-          <p className="text-primary text-sm tracking-[0.2em] uppercase mb-3">Student Works</p>
+          <p className="text-primary text-sm tracking-[0.2em] uppercase mb-3">
+            Student Works
+          </p>
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
             生徒<span className="text-gradient-gold">作品</span>・感想
           </h2>

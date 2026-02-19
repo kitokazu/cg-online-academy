@@ -13,6 +13,8 @@ const Contact = lazy(() => import("./pages/Contact"));
 const InstallMaya = lazy(() => import("./pages/InstallMaya"));
 const StudentWorks = lazy(() => import("./pages/StudentWorks"));
 const InstallZoom = lazy(() => import("./pages/InstallZoom"));
+const Class0 = lazy(() => import("./pages/Class0"));
+const Class0Lesson = lazy(() => import("./pages/Class0Lesson"));
 
 const queryClient = new QueryClient();
 
@@ -28,6 +30,8 @@ const App = () => (
             <Route path="/classes" element={<Classes />} />
             <Route path="/student-works" element={<StudentWorks />} />
             <Route path="/free-materials" element={<FreeMaterials />} />
+            <Route path="/free-materials/class-0" element={<Class0 />} />
+            <Route path="/free-materials/class-0/:lessonId" element={<Class0Lesson />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/install/maya" element={<InstallMaya />} />
             <Route path="/install/zoom" element={<InstallZoom />} />

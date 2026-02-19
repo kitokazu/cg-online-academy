@@ -103,7 +103,7 @@ export default function Classes() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h1 className="text-2xl md:text-3xl font-bold mb-2">
+            <h1 className="text-3xl md:text-5xl font-bold mb-2">
               <span className="text-gradient-gold">クラス</span>登録
             </h1>
             <p className="text-muted-foreground">
