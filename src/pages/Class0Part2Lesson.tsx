@@ -2,18 +2,18 @@ import { motion } from 'framer-motion';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, ChevronRight } from 'lucide-react';
 import PageLayout from '@/components/PageLayout';
-import { class0Lessons } from '@/data/class0';
+import { class0Part2Lessons } from '@/data/class0-2';
 
-export default function Class0Lesson() {
+export default function Class0Part2Lesson() {
   const { lessonId } = useParams();
-  const lessonIndex = class0Lessons.findIndex((l) => l.id === lessonId);
+  const lessonIndex = class0Part2Lessons.findIndex((l) => l.id === lessonId);
 
   if (lessonIndex === -1) {
-    return <Navigate to="/free-materials/class-0" replace />;
+    return <Navigate to="/free-materials/class-0-2" replace />;
   }
 
-  const lesson = class0Lessons[lessonIndex];
-  const nextLesson = lessonIndex < class0Lessons.length - 1 ? class0Lessons[lessonIndex + 1] : null;
+  const lesson = class0Part2Lessons[lessonIndex];
+  const nextLesson = lessonIndex < class0Part2Lessons.length - 1 ? class0Part2Lessons[lessonIndex + 1] : null;
 
   return (
     <PageLayout>
@@ -32,15 +32,15 @@ export default function Class0Lesson() {
                 無料教材
               </Link>
               <ChevronRight className="w-3 h-3" />
-              <Link to="/free-materials/class-0" className="hover:text-foreground transition-colors">
-                クラス 0
+              <Link to="/free-materials/class-0-2" className="hover:text-foreground transition-colors">
+                クラス 0-2
               </Link>
               <ChevronRight className="w-3 h-3" />
               <span className="text-foreground">{lesson.titleJa}</span>
             </nav>
 
             <p className="text-primary text-sm tracking-[0.2em] uppercase mb-4">
-              Lesson {lessonIndex + 1} / {class0Lessons.length}
+              Lesson {lessonIndex + 1} / {class0Part2Lessons.length}
             </p>
             <h1 className="text-3xl md:text-5xl font-bold mb-4">
               {lesson.titleJa}
@@ -61,10 +61,10 @@ export default function Class0Lesson() {
                   レッスン
                 </h3>
                 <ul className="space-y-1">
-                  {class0Lessons.map((l, i) => (
+                  {class0Part2Lessons.map((l, i) => (
                     <li key={l.id}>
                       <Link
-                        to={`/free-materials/class-0/${l.id}`}
+                        to={`/free-materials/class-0-2/${l.id}`}
                         className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors ${
                           l.id === lessonId
                             ? 'text-foreground bg-card border border-border'
@@ -88,29 +88,36 @@ export default function Class0Lesson() {
 
             {/* Main Content */}
             <div className="space-y-8">
-              {/* Demo Video */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-              >
-                <div className="rounded-lg overflow-hidden border border-border bg-black">
-                  <video
-                    controls
-                    preload="none"
-                    className="w-full"
-                    src={lesson.video}
-                  >
-                    お使いのブラウザは動画再生に対応していません。
-                  </video>
-                </div>
+              {/* Demo Video (only if lesson has one) */}
+              {lesson.video && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="rounded-lg overflow-hidden border border-border bg-black">
+                    <video
+                      controls
+                      preload="none"
+                      className="w-full"
+                      src={lesson.video}
+                    >
+                      お使いのブラウザは動画再生に対応していません。
+                    </video>
+                  </div>
+                </motion.div>
+              )}
 
-                {lesson.introJa && (
-                  <p className="text-muted-foreground leading-relaxed mt-6">
-                    {lesson.introJa}
-                  </p>
-                )}
-              </motion.div>
+              {lesson.introJa && (
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  className="text-muted-foreground leading-relaxed"
+                >
+                  {lesson.introJa}
+                </motion.p>
+              )}
 
               {/* Steps */}
               <div className="space-y-6">
@@ -157,7 +164,7 @@ export default function Class0Lesson() {
                   viewport={{ once: true }}
                 >
                   <Link
-                    to={`/free-materials/class-0/${nextLesson.id}`}
+                    to={`/free-materials/class-0-2/${nextLesson.id}`}
                     className="flex items-center justify-between p-6 rounded-lg bg-card border border-border hover:border-primary/30 transition-all duration-500 group"
                   >
                     <div className="min-w-0">
@@ -178,15 +185,15 @@ export default function Class0Lesson() {
                   className="text-center space-y-4"
                 >
                   <p className="text-muted-foreground">
-                    クラス 0 のすべてのレッスンを完了しました。
+                    クラス 0-2 のすべてのレッスンを完了しました。
                   </p>
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                     <Link
-                      to="/free-materials/class-0"
+                      to="/free-materials/class-0-2"
                       className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-md border border-border text-foreground hover:bg-card transition-colors"
                     >
                       <ArrowLeft className="w-4 h-4" />
-                      クラス 0 に戻る
+                      クラス 0-2 に戻る
                     </Link>
                     <Link
                       to="/classes"

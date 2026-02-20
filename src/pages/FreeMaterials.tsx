@@ -73,6 +73,35 @@ export default function FreeMaterials() {
               </Card>
             </Link>
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-6"
+          >
+            <Link to="/free-materials/class-0-2" className="block group">
+              <Card className="bg-card border border-border hover:border-primary/30 transition-all duration-500">
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-2">
+                    <Badge variant="secondary">無料</Badge>
+                    <BookOpen className="w-4 h-4 text-muted-foreground" />
+                  </div>
+                  <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                    Maya 基本操作 2（Modeling Tools）
+                  </CardTitle>
+                  <CardDescription className="text-base leading-relaxed">
+                    プロジェクト設定、削除、Extrude、Multi-Cut、Append、Insert Edge Loop、Group、Combine、Mergeなど、モデリングに必要な基本ツールを全13レッスンで習得します。
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center gap-2 text-sm text-primary font-medium">
+                    チュートリアルを始める <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          </motion.div>
         </div>
       </section>
 
